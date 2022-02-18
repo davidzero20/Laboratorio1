@@ -17,12 +17,7 @@ const postEnvios = (req = request, res = response) =>{
     guardarDB(lista.listadoArr,'envios')
     res.send('Registro Creado')
 }
-
-/*const getEnvios = (req = request, res = response) =>
-    res.send('GET Endpoint para Envios')*/
-
-/*const postEnvios = (req = request, res = response) =>
-    res.send('POST Endpoint para Envios')*/    
+    
 
 const putEnvios = (req = request, res = response) =>
     res.send('PUT Endpoint para Envios')

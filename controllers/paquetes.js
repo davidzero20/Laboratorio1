@@ -18,10 +18,7 @@ const postPaquetes = (req = request, request = response) => {
     guardarDB(lista.listadoArr,'paquetes')
     res.send('Registro Creado')
 }
-    
-
-const postPaquetes = (req = request, res = response) =>
-    res.send('POST Endpoint para Paquetes')    
+ 
 
 const putPaquetes = (req = request, res = response) =>
     res.send('PUT Endpoint para Paquetes')
