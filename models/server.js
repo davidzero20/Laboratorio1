@@ -42,7 +42,7 @@ class Server{
             this.app.post('/seguimiento', (req,res) =>res.send ('POST Endpoint para Seguimiento'))
             this.app.put('/seguimiento', (req,res) =>res.send ('PUT Endpoint para Seguimiento'))
             this.app.delete('/seguimiento', (req,res) =>res.send ('DELETE Endpoint para Seguimiento'))*/
-            this.app.use('/seguimiento',require('../routes/seguimiento'))
+            this.app.use('/seguimientos',require('../routes/seguimientos'))
             
         }
 
