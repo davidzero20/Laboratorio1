@@ -1,9 +1,9 @@
 const fs = require('fs');
-const archivo = '../database/'; 
+const dir = './database/'; 
 
 const guardarDB = ( data, archivo ) => {
     const path = dir + archivo+'.json'
-    fs.writeFileSync( archivo, JSON.stringify(data) );
+    fs.writeFileSync(  path, JSON.stringify(data) );
 }
 
 const leerDB = () => {

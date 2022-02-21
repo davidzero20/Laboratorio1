@@ -12,20 +12,35 @@ const getEnvios = (req = request, res = response) => {
 const postEnvios = (req = request, res = response) =>{
     let lista = new ListadoEnvios()
     let datosJSON = leerDB('envios');
-    lista._listado.cargarTareasFromArray(datosJSON)
+    lista.cargarTareasFromArray(datosJSON)
     lista.crearEnvio(req.body)
     guardarDB(lista.listadoArr,'envios')
     res.send('Registro Creado')
 }
-    
 
-const putEnvios = (req = request, res = response) =>
-    res.send('PUT Endpoint para Envios')
+const putEnvios = (req = request, res = response) =>{
+    let lista = new ListadoEnvios()
+    let datosJSON = leerDB('envios');
+    lista.cargarTareasFromArray(datosJSON)
+    //funcion para actualizar
+    const datos = lista.listadoArr.map(item =>
+          item.id == req.params.id ? {"id":item.id, ...req.body}: item
+        );
+    guardarDB(datos,'envios')
+    res.send('Registro Actualizado')
+}
     
-const deleteEnvios = (req = request, res = response) =>
-    res.send('DELETE Endpoint para Envios')      
-
-module.exports ={
+const deleteEnvios = (req = request, res = response) =>{
+    let lista = new ListadoEnvios()
+    let datosJSON = leerDB('envios');
+    lista.cargarTareasFromArray(datosJSON)
+    //funcion para eliminar
+    let data = lista.listadoArr.filter(item =>  item.id !== req.params.id)
+    guardarDB(data,'envios')
+    res.send('Registro Eliminado')
+}
+    
+module.exports = {
     getEnvios,
     postEnvios,
     putEnvios,

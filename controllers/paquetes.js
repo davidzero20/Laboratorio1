@@ -20,11 +20,29 @@ const postPaquetes = (req = request, request = response) => {
 }
  
 
-const putPaquetes = (req = request, res = response) =>
-    res.send('PUT Endpoint para Paquetes')
+const putPaquetes = (req = request, res = response) =>{
+    let lista = new ListadoPaquetes()
+    let datosJSON = leerDB('paquetes');
+    lista.cargarTareasFromArray(datosJSON)
+    //funcion para actualizar
+    const datos = lista.listadoArr.map(item =>
+        p.id == req.params.id
+        ? {"id": item.id,...req.body}
+        : item
+    );
+   guardarDB(datos, 'paquetes')
+   res.send('Registro Actualizado')
+}   
     
-const deletePaquetes = (req = request, res = response) =>
-    res.send('DELETE Endpoint para Paquetes')      
+const deletePaquetes = (req = request, res = response) =>{
+    let lista = new ListadoPaquetes()
+    let datosJSON = leerDB('paquetes');
+    lista.cargarTareasFromArray(datosJSON)
+    //Funcion para eliminar
+    let data = lista.listadoArr.filter(item => item.id !==req.params.id)
+    guardarDB(data,'paquetes')
+    res.send('Registro Eliminado')     
+} 
 
 module.exports ={
     getPaquetes,

@@ -22,11 +22,31 @@ const postDetallesEnvios = (req = request, res = response) =>{
 }
         
 
-const putDetallesEnvios = (req = request, res = response) =>
-    res.send('PUT Endpoint para Detalles Envios')
+const putDetallesEnvios = (req = request, res = response) =>{
+    let lista = new ListadodetallesEnvios()
+    let datosJSON = leerDB('Detalles Envios');
+    lista.cargarTareasFromArray(datosJSON)
+    //funcion para actualizar
+    const datos = lista.listadoArr.map(item =>
+        p.id == req.params.id
+        ? {"id": item.id,...req.body}
+        : item
+    );
+   guardarDB(datos, 'Detalles Envios')
+   res.send('Registro Actualizado')
+}    
+
     
-const deleteDetallesEnvios = (req = request, res = response) =>
-    res.send('DELETE Endpoint para Detalles Envios')      
+const deleteDetallesEnvios = (req = request, res = response) =>{
+    let lista = new ListadodetallesEnvios()
+    let datosJSON = leerDB('Detalles Envios');
+    lista.cargarTareasFromArray(datosJSON)
+    //Funcion para eliminar
+    let data = lista.listadoArr.filter(item => item.id !==req.params.id)
+    guardarDB(data,'Detalles Envios')
+    res.send('Registro Eliminado')     
+}
+     
 
 module.exports ={
     getdetallesEnvios,
