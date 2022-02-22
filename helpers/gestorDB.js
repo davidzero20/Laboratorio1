@@ -2,11 +2,12 @@ const fs = require('fs');
 const dir = './database/'; 
 
 const guardarDB = ( data, archivo ) => {
+    console.log(archivo)
     const path = dir + archivo+'.json'
     fs.writeFileSync(  path, JSON.stringify(data) );
 }
 
-const leerDB = () => {
+const leerDB = (archivo) => {
     const path = dir + archivo+'.json'
     if (!fs.existsSync(path) ){
         return null;
