@@ -1,3 +1,10 @@
 [
-{}
+    {},
+    {
+        "id": "0501200011441",
+        "descripcion": "Paquete",
+        "peso": "14 mg",
+        "volumen": "2l/k",
+        "clasificacion": "delicado"
+    }
 ]
